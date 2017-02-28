@@ -13,70 +13,27 @@ RUN  set -x && \
     git \
     curl \
     supervisor \
-    nginx \
+#    nginx \
     openssh-client \
-    nodejs \
+#    nodejs \
   && ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime \
   && date \
   && rm -rf /var/cache/apk/*
 
-
-## Install tools...
-#RUN set -x && \
-#  apk --update add \
-#    grep \
-#    bzip2-dev \
-#    zlib-dev \
-#    icu \
-#    icu-libs \
-#    icu-dev \
-#    libmcrypt-dev \
-#  && docker-php-ext-configure intl \
-#  && docker-php-ext-install \
-#     iconv \
-#     mcrypt \
-#     intl \
-#     mbstring \
-#     opcache \
-#     zip \
-#     bz2 \
-#  && rm -rf /var/cache/apk/*
-
-#RUN apt-get update && apt-get install -y --force-yes --no-install-recommends \
-#	build-essential \
-#	software-properties-common \
-#	cron \
-#	nano \
-#	git \
-#	curl \
-#	supervisor \
-#	php5 \
-#	php5-mcrypt \
-#	php5-tidy \
-#	php5-cli \
-#	php5-common \
-#	php5-curl \
-#	php5-intl \
-#	php5-fpm \
-#	php-apc \
-#	nginx \
-#	ssh \
-#	npm \
-#	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 COPY ./php/php.ini /usr/local/etc/php/php.ini
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf \
-	&& sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /usr/local/etc/php-fpm.conf
+RUN \
+#  echo "daemon off;" >> /etc/nginx/nginx.conf && \
+	sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /usr/local/etc/php-fpm.conf
 
-ADD nginx/default   /etc/nginx/sites-available/default
+#ADD nginx/default   /etc/nginx/sites-available/default
 
 # Install nodejs
-RUN npm install \
-    express \
-    serve-static \
-
-# SSH Key
-  && mkdir -p /root/.ssh/ && touch /root/.ssh/known_hosts
+#RUN npm install \
+#    express \
+#    serve-static \
+#
+## SSH Key
+#  && mkdir -p /root/.ssh/ && touch /root/.ssh/known_hosts
 
 # Install Composer
 # Install prestissimo
