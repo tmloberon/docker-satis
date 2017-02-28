@@ -2,7 +2,6 @@ version: "2"
 services:
   satis:
     image: ypereirareis/docker-satis:4.3
-    container_name: satis-test
     hostname: satis
     volumes:
       - "/var/tmp/composer:/root/.composer"
@@ -14,6 +13,7 @@ services:
     ports:
       - 127.0.0.1:3333:3000
       - 127.0.0.1:8181:80
+
 networks:
   default:
     external:

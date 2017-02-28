@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Reset
 Color_Off='\033[0m'       # Text Reset
 
@@ -51,8 +53,6 @@ done
 
 echo " >> Copying host ssh key from /var/tmp/id to /root/.ssh/id_rsa"
 cp /var/tmp/id /root/.ssh/id_rsa
-chmod 600 /root/.ssh/id_rsa
-
 chmod 600 /root/.ssh/id_rsa
 
 echo " >> Building Satis for the first time"
